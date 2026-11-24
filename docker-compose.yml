@@ -1,0 +1,17 @@
+﻿services:
+  db_inmobiliaria:
+    image: postgres:17-alpine
+    container_name: postgres_inmobiliaria_g2
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: inmobiliaria_db
+      POSTGRES_USER: admin_inmobiliaria
+      POSTGRES_PASSWORD: DevPassword2026!
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_inmobiliaria:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  pgdata_inmobiliaria:
